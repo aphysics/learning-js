@@ -54,3 +54,23 @@ const painter = {
 painter.setLastName("Picasso")
 painter.setSex("macho")
 console.log(painter.getFullName() + " era re-" + painter.getSex())
+
+//omoshiroi ne
+
+let Persona = {
+    nombre: 'Maykel',
+    edad: 39,
+    sexo: 'masculino',
+    pais: 'Cuba'
+    };
+let Heroe = {
+    nombre: 'Saitama',
+    edad: 25,
+    sexo: 'masculino',
+    pais: 'Japon',
+    heroe: true
+};
+let newHeroe = Object.assign( {}, Heroe, Persona)
+//newHeroe
+//Object { nombre: "Maykel", edad: 39, sexo: "masculino", pais: "Cuba", heroe: true }
+
