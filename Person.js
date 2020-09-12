@@ -55,6 +55,9 @@ painter.setLastName("Picasso")
 painter.setSex("macho")
 console.log(painter.getFullName() + " era re-" + painter.getSex())
 
+//template literals
+console.log(`${painter.getFullName()} era re-${painter.getSex()}`)
+
 //omoshiroi ne
 
 let Persona = {
