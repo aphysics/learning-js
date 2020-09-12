@@ -14,7 +14,7 @@ class FizzBuzz {
             return "Buzz"
         }
         else {
-            return "what are up to?"
+            return "what are you up to?"
         }
     }
 }
