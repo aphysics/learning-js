@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cola restaurante</title>
+  </head>
+  <body>
+    <div id='root'></div>
+
+    <h1>Restaurante WEBeeF</h1>
+    
+    <h2>Comensales</h2>
+    <div id='field_1'>
+      <input type="text" id="comensales" size="10" />
+      <div id='alert' style="color: red;"></div>
+    </div>
+    
+    <h2>Nombre</h2>
+    <div id='field_2'>
+      <input type="text" id="nombre" size="10" />
+      <button id="adicionar">Adicionar</button>
+    </div>
+    
+    <br />
+    <br />
+    <br />
+    <button id="sacar">Sacar</button>
+    <br />
+    <br />
+    <br />
+    <div id="resultado">Aquí se mostrará el resultado de la cola existente</div>
+
+    <script>
+
+        //document.getElementById('root')
+        //lista
+        listaCola = [];
+        
+        //comensales
+        var comensales = document.getElementById("comensales");
+        comensales.onblur = () => {
+
+          // ALEX HACE PEQUEÑAS INCURSIONES
+          
+          let numbersOf = [1,2,3,4,5,6,7,8]
+          let quantity = comensales.value;
+          if ((quantity in numbersOf) && (quantity != 0)) {
+            console.log(quantity);
+            return document.getElementById('alert').innerHTML = ""
+          } else {
+            quantity = "";
+            return document.getElementById('alert').innerHTML = "Tiene que ser un número entre 1 y 8"
+          }
+        };
+
+        //nombre de la persona a adicionar a la cola
+        var nombre = document.getElementById("nombre");
+        
+        // ******************************************************************************************
+        // ALEX BEGINS
+        // Mi modesta contribución, un método que te construye
+        // elementos del DOM, lo hice aquí rápido, luego lo agrego
+        // en una clase como dios manda
+        // METODO flipar(html_label, html_parameter_1, html_parameter_2,..., html_parameter_n, text_to_print)
+        //
+        const flipar = (args) => {
+          argsLength = args.length
+          if (argsLength === 0)
+          {
+            throw 'Incorrect number of arguments'
+            return 1
+          }
+          else
+          {
+            let content = ''
+            let label_type = ''
+            let label_parameters = ''
+            for (let index in args)
+            {
+              //console.log(args[index])
+              if (index == 0)
+              {
+                label_type = args[index]
+                //console.log(label_type, index)
+              }
+              else if(index == (args.length-1))
+              {
+                content = args[index]
+              }
+              else
+              {
+                  label_parameters = label_parameters + ' ' + args[index]
+                  //console.log(label_parameters, index)
+              }
+            }
+            return '<' + label_type + label_parameters + '>' + content + '</' + label_type + '>'
+          }
+        }
+        // ALEX, EVERYTHING THAT HAS A BEGINING, HAS AN END
+        // ******************************************************************************************
+
+        //adicionar
+        var adicionar = document.getElementById("adicionar");
+        adicionar.onclick = () => {
+
+          // ******************************************************************************************
+          // ALEX flipara
+          //
+          arrayList = ['h1','id="flipar"','style="color: red;"','Vas a Flipar tío, vas a... F L I P A R !']
+          document.getElementById("root").innerHTML = flipar(arrayList)
+          // ALEX flipo
+          // ******************************************************************************************
+
+          let personaje = nombre.value
+          if (
+            personaje !== "" &&
+            listaCola.length < comensales.value &&
+            isNaN(personaje)
+          ) {
+            listaCola.push(personaje);
+
+            console.log("Agregado a la cola", listaCola);
+            var parseListaCola = [...listaCola].join(" - ");
+            document.getElementById("resultado").innerHTML = parseListaCola;
+          }
+          personaje = "";
+
+          console.log(listaCola.length);
+        };
+
+        //sacar
+        var sacar = document.getElementById("sacar");
+
+        sacar.onclick = () => {
+          if (listaCola[0] !== undefined) {
+            var primero = listaCola[0];
+            listaCola.shift();
+            
+            console.log(
+              "Despues que sale '",
+              primero,
+              "' asi queda la cola: ",
+              listaCola
+            );
+            var parseListaCola = [...listaCola].join(" - ");
+            document.getElementById("resultado").innerHTML = parseListaCola;
+            console.log(listaCola.length);
+          }
+      };
+    </script>
+  </body>
+</html>
